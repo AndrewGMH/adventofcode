@@ -27,6 +27,10 @@ app.get(/\b(0?[1-9]|1[0-9]|2[0-5])\b/, (req: Request, res: Response) => {
   res.send({ data });
 });
 
+app.get('*', (_req: Request, res: Response) => {
+  res.sendStatus(404);
+});
+
 app.listen(PORT, () => {
   console.log('server started at http://localhost:' + PORT);
 });
