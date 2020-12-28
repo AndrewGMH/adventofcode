@@ -7,7 +7,7 @@ import Display from '../util/display';
  * @param data Array of numbers
  */
 const extract = (data: Array<string>): Array<number> => {
-    return data.map(row => +row);
+  return data.map(row => +row);
 }
 
 /**
@@ -17,18 +17,18 @@ const extract = (data: Array<string>): Array<number> => {
  * @param search The number that we are searching for or -1 it's impossible
  */
 const answerOne = (data: Array<number>, search: number): number => {
-    // The first number can only be 0 to n - 1
-    for (let x = 0; x < data.length - 1; x++) {
-        // The second number can only be x + 1 to n
-        for (let y = x + 1; y < data.length; y++) {
-            // Are these numbers equal to {search} ?
-            if (data[x] + data[y] === search) {
-                return data[x] * data[y];
-            }
-        }
+  // The first number can only be 0 to n - 1
+  for (let x = 0; x < data.length - 1; x++) {
+    // The second number can only be x + 1 to n
+    for (let y = x + 1; y < data.length; y++) {
+      // Are these numbers equal to {search} ?
+      if (data[x] + data[y] === search) {
+        return data[x] * data[y];
+      }
     }
+  }
 
-    return -1;
+  return -1;
 }
 
 /**
@@ -38,37 +38,37 @@ const answerOne = (data: Array<number>, search: number): number => {
  * @param search The number that we are searching for or -1 it's impossible
  */
 const answerTwo = (data: Array<number>, search: number): number => {
-    // The first number can only be 0 to n - 2
-    for (let x = 0; x < data.length - 2; x++) {
-        // The second number can only be x + 1 to n - 1
-        for (let y = x + 1; y < data.length - 1; y++) {
-            // The third number can only be y + 1 to n
-            for (let z = y + 1; z < data.length; z++) {
-                // Are these numbers equal to {search} ?
-                if (data[x] + data[y] + data[z] === search) {
-                    return data[x] * data[y] * data[z];
-                }
-            }
+  // The first number can only be 0 to n - 2
+  for (let x = 0; x < data.length - 2; x++) {
+    // The second number can only be x + 1 to n - 1
+    for (let y = x + 1; y < data.length - 1; y++) {
+      // The third number can only be y + 1 to n
+      for (let z = y + 1; z < data.length; z++) {
+        // Are these numbers equal to {search} ?
+        if (data[x] + data[y] + data[z] === search) {
+          return data[x] * data[y] * data[z];
         }
+      }
     }
+  }
 
-    return -1;
+  return -1;
 }
 
 
 export default () => {
 
-    const search: number = 2020;
-    const data: Array<number> = Load(1, extract) as Array<number>;
+  const search: number = 2020;
+  const data: Array<number> = Load(1, extract) as Array<number>;
 
-    return {
-        "part-1": {
-            'question': Display(1, 2),
-            'answer': answerOne(data, search)
-        },
-        "part-2": {
-            'question': Display(1, 2),
-            'answer': answerTwo(data, search)
-        },
-    }
+  return {
+    "part-1": {
+      'question': Display(1, 1),
+      'answer': answerOne(data, search)
+    },
+    "part-2": {
+      'question': Display(1, 2),
+      'answer': answerTwo(data, search)
+    },
+  }
 }
