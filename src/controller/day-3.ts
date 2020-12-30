@@ -62,6 +62,8 @@ const answerTwo = (data: Array<string>): number => {
       dataBaseOnDownMoves = data.filter(function (_row, index) {
         return index % setOfMoves[x][1] == 0;
       });
+    } else {
+      dataBaseOnDownMoves = data;
     }
   
     // Multiply each course result
