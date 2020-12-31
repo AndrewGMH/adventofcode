@@ -75,7 +75,7 @@ const answerTwo = (data: Array<string>): number => {
 
 export default () => {
 
-  const data: Array<string> = Load(3, (data: Array<string>) => data) as Array<string>;
+  const data: Array<string> = Load(3, (data: Array<string>) => data);
 
   return {
     "part-1": {
