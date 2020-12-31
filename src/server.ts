@@ -5,6 +5,7 @@ import ResponseTime from './middleware/response-time';
 import Day1 from "./controller/day-1";
 import Day2 from "./controller/day-2";
 import Day3 from "./controller/day-3";
+import Day4 from './controller/day-4';
 
 const app = express();
 const PORT = 3000;
@@ -27,6 +28,10 @@ app.get(/\b(0?[1-9]|1[0-9]|2[0-5])\b/, (req: Request, res: Response) => {
 
     case 3:
       data = Day3();
+      break;
+
+    case 4:
+      data = Day4();
       break;
 
     default:
