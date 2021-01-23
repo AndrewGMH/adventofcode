@@ -10,6 +10,7 @@ import Day5 from './controller/day-5';
 import Day7 from './controller/day-7';
 import Day9 from './controller/day-9';
 import Day10 from './controller/day-10';
+import Day11 from './controller/day-11';
 import Day25 from './controller/day-25';
 
 const app = express();
@@ -53,6 +54,10 @@ app.get(/\b(0?[1-9]|1[0-9]|2[0-5])\b/, (req: Request, res: Response) => {
 
     case 10:
       data = Day10();
+      break;
+
+    case 11:
+      data = Day11();
       break;
 
     case 25:
