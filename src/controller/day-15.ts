@@ -1,10 +1,5 @@
 import Display from '../util/display';
 
-interface Memory {
-    first: number,
-    second: number,
-}
-
 /**
  * Find the next number based on the following conditions
  * 
@@ -18,16 +13,13 @@ interface Memory {
  * @param current Current number
  * @param turn The current turn
  */
-const nextNumber = (memories: Memory[], prev: number, current: number, turn: number): number => {
+const nextNumber = (memories: number[][], prev: number, current: number, turn: number): number => {
     turn--;
 
     // The previous number and the current one are equal
     if (prev === current) {
         // Save the number positions
-        memories[current] = {
-            'first' : turn - 1,
-            'second': turn,
-        };
+        memories[current] = [turn - 1, turn];
 
         return 1;
     }
@@ -35,33 +27,24 @@ const nextNumber = (memories: Memory[], prev: number, current: number, turn: num
     // Is the previous and current number in memory ?
     if (prev in memories && current in memories) {
         // Get the number positions
-        let { first, second } = memories[current];
+        let [first, second] = memories[current];
 
         // The number was only used onced
         if (second == -1) {
             // Save the second position
-            memories[current] = {
-                'first' : first,
-                'second': turn,
-            };
+            memories[current] = [first, turn]
 
             return turn - first;
         }
 
         // Update the first number position with the second one then save the position
-        memories[current] = {
-            'first' : second,
-            'second': turn,
-        };
+        memories[current] = [second, turn]
 
         return turn - second;
     }
 
     // Don't forget to memorize the first instance of the number
-    memories[current] = {
-        'first' : turn,
-        'second': -1,
-    }
+    memories[current] = [turn, -1]
 
     return 0;
 }
@@ -73,14 +56,11 @@ const nextNumber = (memories: Memory[], prev: number, current: number, turn: num
  * @param turns Number of turn to loop
  */
 const loopNextNumber = (data: number[], turns: number): number => {
-    const memories: Memory[] = [];
+    const memories: number[][] = new Array(turns);
 
     // Create memories with the pre define numbers
     for (let x = 0; x < data.length; ++x) {
-        memories[data[x]] = {
-            'first': x,
-            'second': -1,
-        };
+        memories[data[x]] = [x, -1];
     }
 
     let prev: number = -1;
